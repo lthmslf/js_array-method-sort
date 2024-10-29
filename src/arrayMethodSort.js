@@ -21,12 +21,16 @@ function applyCustomSort() {
       for (let i = 0; i < this.length; i++) {
         let result;
 
-        if (compareFunction) {
-          result = compareFunction(this[i], this[i + 1]);
-        }
+        if (i + 1 < this.length) {
+          if (compareFunction) {
+            result = compareFunction(this[i], this[i + 1]);
+          }
 
-        if (!compareFunction) {
-          result = this[i] > this[i + 1];
+          if (!compareFunction) {
+            if (this[i] > this[i + 1]) {
+              result = 1;
+            }
+          }
         }
 
         if (result > 0) {
@@ -45,7 +49,7 @@ function applyCustomSort() {
     }
 
     for (let i = 0; i < this.length; i++) {
-      if (Number(this[i])) {
+      if (!isNaN(Number(this[i]))) {
         this[i] = Number(this[i]);
       }
     }
@@ -70,8 +74,9 @@ const awesomeArr = [
 
 applyCustomSort(awesomeArr);
 
-// awesomeArr.sort2();
+awesomeArr.sort2();
 // console.log([3, 12, 2, 11].sort2());
+// console.log([3, 12, 2, 11].sort());
 // console.log(awesomeArr.sort2());
 // console.log(awesomeArr.sort2((a, b) => a < b));
 
